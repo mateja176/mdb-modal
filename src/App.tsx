@@ -1,24 +1,32 @@
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalFooter,
+  MDBModalHeader,
+} from 'mdbreact';
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggle = React.useCallback(() => {
+    setIsOpen((open) => !open);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={toggle}>Toggle</button>
+      {/* @ts-ignore */}
+      <MDBModal isOpen={isOpen} toggle={toggle}>
+        <MDBModalHeader toggle={toggle}>MDBModal title</MDBModalHeader>
+        <MDBModalBody>(...)</MDBModalBody>
+        <MDBModalFooter>
+          <MDBBtn color="secondary" onClick={toggle}>
+            Close
+          </MDBBtn>
+          <MDBBtn color="primary">Save changes</MDBBtn>
+        </MDBModalFooter>
+      </MDBModal>
     </div>
   );
 }
