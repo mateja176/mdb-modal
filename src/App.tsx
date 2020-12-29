@@ -8,6 +8,9 @@ import {
 import React from 'react';
 import './App.css';
 
+// @ts-ignore
+MDBModal.displayName = 'MDBModal';
+
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = React.useCallback(() => {
